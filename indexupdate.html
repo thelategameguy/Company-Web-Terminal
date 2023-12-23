@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/jquery"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/jquery.terminal/css/jquery.terminal.min.css"
+    />
+    <style>
+      .terminal .terminal-output div div.terminal-command {
+          color: green;
+      }
+      .terminal .terminal-output div div.terminal-error {
+          color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="text-align:center;">COMPANY WEB TERMINAL</h1>
+    <div id="weeklyQuota"></div>
+    <script>
+      $(document).ready(function() {
+          var term = $('body').terminal({
+              hello: function(what) {
+
+              },
+              time: function() {
+                  this.echo('The current time is: ' + new Date().toLocaleTimeString());
+              },
+              date: function() {
+                  this.echo('Today\'s date is: ' + new Date().toLocaleDateString());
+              },
+              buy: function() {
+                  var name = prompt("Enter your name:");
+                  var item = prompt("Enter the item you want to buy:");
+                  var code = prompt("Enter your buy code:");
+                  this.echo('Buy order created. Please remember your buy code and go to the designated shop location.');
+              },
+              dev: function() {
+                  this.echo('The developer of this terminal is: Grant G.');
+              },
+              dayOfWeek: function() {
+                  var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                  var day = days[new Date().getDay()];
+                  this.echo('Today is ' + day + '.');
+              },
+              help: function() {
+                  this.echo('Current available commands are: hello, time, date, buy, dev, dayOfWeek, help, video, music, maps, companyInfo, contract, priceScale');
+              },
+              video: function() {
+                  window.open('https://www.youtube.com', '_blank');
+              },
+              music: function() {
+                  window.open('https://music.youtube.com', '_blank');
+              },
+              maps: function() {
+                  window.open('https://maps.google.com', '_blank');
+              },
+              companyInfo: function() {
+                this.echo('https://docs.google.com/document/d/1qNDhmXwg4Gn3SAhNMBPNKR3dPhBM3WMsOgafc6Rx1TQ/edit?usp=sharing')
+              },
+              contract: function() {
+                this.echo('https://docs.google.com/document/d/1EI3VHloTgsiMxyngXCzG9cu4URaVHqaadFXqtFuLp3U/edit?usp=sharing')
+	      },
+	      priceScale: function() {
+		this.echo('https://docs.google.com/document/d/1eVhh3MaUcXK8k4cCZRLM4jUPS64Yeeqdg_xIR3c6Ezw/edit?usp=sharing')
+              }
+          });
+
+          term.clear();  // Clear the terminal on start
+
+          function updateWeeklyQuota() {
+              var quota = Math.floor(Math.random() * (5000 - 100 + 1)) + 100;
+              $('#weeklyQuota').text("Weekly quota: " + quota);
+          }
+
+          updateWeeklyQuota();  // Update the quota immediately
+
+          // Check every day if it's Friday and update the quota
+          setInterval(function() {
+              var today = new Date();
+              if (today.getDay() === 5) {  // 5 represents Friday
+                  updateWeeklyQuota();
+              }
+          }, 24 * 60 * 60 * 1000);  // 24 hours
+      });
+    </script>
+  </body>
+</html>
