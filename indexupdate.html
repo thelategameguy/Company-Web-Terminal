@@ -68,23 +68,23 @@
               }
           });
 
-          term.clear();  // Clear the terminal on start
+          term.clear();
 
           function updateWeeklyQuota() {
               var quota = Math.floor(Math.random() * (5000 - 100 + 1)) + 100;
               $('#weeklyQuota').text("Weekly quota: " + quota);
           }
 
-          updateWeeklyQuota();  // Update the quota immediately
+          updateWeeklyQuota();
 
-          // Check every day if it's Friday and update the quota
           setInterval(function() {
               var today = new Date();
-              if (today.getDay() === 5) {  // 5 represents Friday
+              if (today.getDay() === 5) {
                   updateWeeklyQuota();
               }
-          }, 24 * 60 * 60 * 1000);  // 24 hours
+          }, 24 * 60 * 60 * 1000);
       });
+//to test the code and find errors you may miss, use bing.com/chat, and paste the code asking "is there any issues with my HTML code here? I am making a terminal API for my scrap collection company and I need to know if it works:"
     </script>
   </body>
 </html>
