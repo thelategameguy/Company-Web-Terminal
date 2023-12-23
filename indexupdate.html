@@ -67,7 +67,6 @@
 	    weather: function(location) {
     $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=YOUR_API_KEY', function(data) {
         this.echo('The current weather in ' + location + ' is ' + data.weather[0].main + ' with a temperature of ' + Math.round(data.main.temp - 273.15) + '°C.');
-    });
 }
 	    
           });
