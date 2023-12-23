@@ -22,8 +22,6 @@
     <script>
       $(document).ready(function() {
           var term = $('body').terminal({
-              hello: function(what) {
-
               },
               time: function() {
                   this.echo('The current time is: ' + new Date().toLocaleTimeString());
@@ -46,7 +44,7 @@
                   this.echo('Today is ' + day + '.');
               },
               help: function() {
-                  this.echo('Current available commands are: hello, time, date, buy, dev, dayOfWeek, help, video, music, maps, companyInfo, contract, priceScale');
+                  this.echo('Current available commands are: time, date, weather, buy, dev, dayOfWeek, help, video, music, maps, companyInfo, contract, priceScale');
               },
               video: function() {
                   window.open('https://www.youtube.com', '_blank');
@@ -65,7 +63,13 @@
 	      },
 	      priceScale: function() {
 		this.echo('https://docs.google.com/document/d/1eVhh3MaUcXK8k4cCZRLM4jUPS64Yeeqdg_xIR3c6Ezw/edit?usp=sharing')
-              }
+              },
+	    weather: function(location) {
+    $.getJSON('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&appid=YOUR_API_KEY', function(data) {
+        this.echo('The current weather in ' + location + ' is ' + data.weather[0].main + ' with a temperature of ' + Math.round(data.main.temp - 273.15) + '°C.');
+    });
+}
+	    
           });
 
           term.clear();
