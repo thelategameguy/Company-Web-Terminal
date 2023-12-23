@@ -65,7 +65,12 @@
 	      },
 	      priceScale: function() {
 		this.echo('https://docs.google.com/document/d/1eVhh3MaUcXK8k4cCZRLM4jUPS64Yeeqdg_xIR3c6Ezw/edit?usp=sharing')
-              }
+              },
+	        note: function() {
+          var text = prompt("Enter your note:");
+          this.echo('Note saved: ' + text);
+        }
+      };
           });
 
           term.clear();
